@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bam's Friends: Patinhas de Ouro</title>
+<meta name="description" content="Projeto da Info Jungkook Brasil em apoio à causa animal, arrecadando fundos para ONGs e protetores independentes de cães e gatos no Brasil.">
+<link rel="icon" type="image/png" href="assets/logo/web/logo-claro.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          dourado: { DEFAULT: '#FCB629', escuro: '#E09E14' },
+          vinho: { DEFAULT: '#6E2A3F', claro: '#8C3A54' },
+          marrom: { DEFAULT: '#4A2F26', escuro: '#3A241E' },
+          terracota: { DEFAULT: '#AA5B21', escuro: '#844318' },
+          creme: { DEFAULT: '#F9EBE1', escuro: '#F0DBC9' },
+          oliva: '#768412',
+          rosa: '#F7B7CD',
+        },
+        fontFamily: {
+          display: ['Fredoka', 'sans-serif'],
+          body: ['Nunito', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-body text-marrom bg-white antialiased">
+
+<a href="#conteudo" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-dourado focus:text-marrom-escuro focus:px-4 focus:py-2 focus:m-2 focus:rounded-lg">Pular para o conteúdo</a>
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-creme-escuro">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+    <a href="#topo" class="flex items-center gap-2 shrink-0">
+      <img src="assets/logo/web/logo-claro.png" alt="Bam's Friends: Patinhas de Ouro" class="h-12 sm:h-14 w-auto">
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8 font-display text-[15px] font-500 text-marrom">
+      <a href="#sobre" class="hover:text-vinho transition-colors">Sobre</a>
+      <a href="#acoes" class="hover:text-vinho transition-colors">Ações</a>
+      <a href="#quem-apoiamos" class="hover:text-vinho transition-colors">Quem apoiamos</a>
+      <a href="#prestacao-de-contas" class="hover:text-vinho transition-colors">Transparência</a>
+      <a href="#contato" class="hover:text-vinho transition-colors">Contato</a>
+    </nav>
+
+    <a href="#como-apoiar" class="hidden lg:inline-flex items-center gap-2 bg-dourado hover:bg-dourado-escuro text-marrom-escuro font-display font-600 text-[15px] px-5 py-2.5 rounded-full transition-colors">
+      Apoiar agora
+    </a>
+
+    <button id="menu-btn" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu" class="lg:hidden p-2 -mr-2 text-marrom">
+      <svg id="icon-abrir" class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-fechar" class="w-7 h-7 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <nav id="menu-mobile" class="hidden lg:hidden border-t border-creme-escuro bg-white px-5 py-4 flex flex-col gap-4 font-display font-500 text-marrom">
+    <a href="#sobre" class="menu-link py-1">Sobre</a>
+    <a href="#acoes" class="menu-link py-1">Ações</a>
+    <a href="#quem-apoiamos" class="menu-link py-1">Quem apoiamos</a>
+    <a href="#prestacao-de-contas" class="menu-link py-1">Transparência</a>
+    <a href="#contato" class="menu-link py-1">Contato</a>
+    <a href="#como-apoiar" class="menu-link mt-1 inline-flex items-center justify-center gap-2 bg-dourado text-marrom-escuro font-600 px-5 py-3 rounded-full">Apoiar agora</a>
+  </nav>
+</header>
+
+<main id="conteudo">
+
+  <section id="topo" class="relative overflow-hidden bg-creme scroll-mt-20">
+    <img src="assets/elementos/icons/estrela-cheia-dourado.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute -top-4 left-[6%] w-12 sm:w-16 opacity-70 rotate-[-12deg]">
+    <img src="assets/elementos/icons/patinha-vinho.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute top-[18%] right-[8%] w-14 sm:w-20 opacity-60 rotate-[10deg]">
+    <img src="assets/elementos/icons/coracao-rosa.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute bottom-[10%] left-[10%] w-10 sm:w-14 opacity-70 rotate-[8deg] hidden sm:block">
+    <img src="assets/elementos/icons/estrela-contorno-oliva.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute bottom-[16%] right-[16%] w-9 sm:w-12 opacity-60 hidden sm:block">
+
+    <div class="relative max-w-4xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-20 sm:pb-28 text-center">
+      <img src="assets/logo/web/logo-claro.png" alt="Bam's Friends: Patinhas de Ouro" class="mx-auto h-28 sm:h-36 w-auto mb-8">
+      <p class="font-display font-600 text-vinho text-sm sm:text-base tracking-wide uppercase mb-3">Um projeto da Info Jungkook Brasil</p>
+      <h1 class="font-display font-700 text-marrom-escuro text-3xl sm:text-5xl leading-tight mb-6">
+        Em apoio à causa animal
+      </h1>
+      <p class="text-base sm:text-lg text-marrom/90 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Inspirado no amor do Jungkook pelo Bam e na união do fandom ARMY para transformar carinho em solidariedade.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#sobre" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-vinho hover:bg-vinho-claro text-white font-display font-600 px-7 py-3.5 rounded-full transition-colors">
+          Conheça o projeto
+        </a>
+        <a href="#como-apoiar" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-dourado hover:bg-dourado-escuro text-marrom-escuro font-display font-600 px-7 py-3.5 rounded-full transition-colors">
+          Apoie o Bam's Friends
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divisor" aria-hidden="true"></div>
+
+  <section id="sobre" class="scroll-mt-20 max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+    <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-8">Sobre o projeto</h2>
+    <div class="space-y-5 text-marrom/90 leading-relaxed text-[17px]">
+      <p>O Bam's Friends: Patinhas de Ouro nasceu de uma inspiração simples: o amor que o Jungkook tem pelo Bam e o carinho que o fandom ARMY demonstra por causas sociais.</p>
+      <p>A partir disso, a Info Jungkook Brasil criou o projeto com o propósito de transformar esse carinho em ajuda para cães e gatos que precisam de apoio em diferentes partes do Brasil.</p>
+      <p>Queremos unir o fandom em torno da causa animal, contribuindo com ONGs, protetores independentes e iniciativas que dedicam seu trabalho ao resgate, cuidado e proteção dos animais.</p>
+      <p>O Bam's Friends é um projeto que busca crescer junto com a comunidade e transformar cada contribuição em uma oportunidade de fazer a diferença na vida de um animal.</p>
+    </div>
+  </section>
+
+  <section id="patinhas-de-ouro" class="scroll-mt-20 relative overflow-hidden bg-creme">
+    <img src="assets/logo/web/logo-claro.png" alt="" aria-hidden="true" class="pointer-events-none select-none absolute right-0 bottom-0 w-64 sm:w-96 opacity-[0.06] translate-x-1/4 translate-y-1/4">
+    <div class="relative max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+      <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-8">Por que Patinhas de Ouro?</h2>
+      <div class="space-y-5 text-marrom/90 leading-relaxed text-[17px]">
+        <p>O nome do projeto vem do nosso maior símbolo: o Bam. Mais do que a inspiração para o projeto, ele representa o carinho e o vínculo que existem entre um animal e sua família.</p>
+        <p>É esse sentimento que queremos multiplicar através do Bam's Friends, ajudando outros cães e gatos a terem a oportunidade de encontrar cuidado, segurança e uma família para chamar de sua.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-que-ja-fizemos" class="scroll-mt-20 max-w-5xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+    <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-4">O que já fizemos</h2>
+    <p class="max-w-2xl text-marrom/90 leading-relaxed text-[17px] mb-10">
+      O Bam's Friends começou com o objetivo de arrecadar R$15.000 para apoiar iniciativas da causa animal. Com essa arrecadação, serão destinados:
+    </p>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
+      <div class="stat-card">
+        <p class="font-display font-700 text-vinho text-3xl sm:text-4xl mb-1">R$15.000</p>
+        <p class="text-sm sm:text-[15px] text-marrom/80">arrecadados para o projeto</p>
+      </div>
+      <div class="stat-card">
+        <p class="font-display font-700 text-vinho text-3xl sm:text-4xl mb-1">6</p>
+        <p class="text-sm sm:text-[15px] text-marrom/80">ONGs apoiadas</p>
+      </div>
+      <div class="stat-card">
+        <p class="font-display font-700 text-vinho text-3xl sm:text-4xl mb-1">4</p>
+        <p class="text-sm sm:text-[15px] text-marrom/80">protetores independentes apoiados</p>
+      </div>
+      <div class="stat-card">
+        <p class="font-display font-700 text-vinho text-3xl sm:text-4xl mb-1">R$1.500</p>
+        <p class="text-sm sm:text-[15px] text-marrom/80">destinados a cada iniciativa</p>
+      </div>
+    </div>
+
+    <div class="max-w-2xl space-y-5 text-marrom/90 leading-relaxed text-[17px]">
+      <p>Além das arrecadações, também começamos a levar o projeto para ações presenciais. Nossa primeira ação aconteceu em Goiânia (GO), em parceria com a ONG Miau Auau, durante um evento de adoção.</p>
+      <p>A ação também contou com a venda de produtos do Bam's Friends, cuja arrecadação foi destinada integralmente à ONG.</p>
+      <p>Esse foi apenas o começo. Queremos continuar criando novas ações, apoiando diferentes iniciativas e, sempre que possível, levar o Bam's Friends para outros lugares do Brasil.</p>
+    </div>
+  </section>
+
+  <div class="divisor" aria-hidden="true"></div>
+
+  <section id="acoes" class="scroll-mt-20 bg-creme">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+      <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-2">Nossas ações</h2>
+      <p class="font-display font-600 text-terracota text-lg mb-6">Goiânia, com a ONG Miau Auau</p>
+      <div class="space-y-5 text-marrom/90 leading-relaxed text-[17px] mb-10">
+        <p>Nossa primeira ação presencial do Bam's Friends aconteceu em Goiânia, em parceria com a ONG Miau Auau. Foi uma oportunidade de estar mais perto da causa animal, conhecer o trabalho realizado pela ONG e contribuir diretamente com os animais que ela atende.</p>
+        <p>A ação também marcou o início de uma das nossas principais vontades: fazer com que o Bam's Friends não fique apenas nas redes sociais, mas também possa estar presente em ações reais de apoio à causa animal.</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div class="placeholder-box aspect-square"><span>Fotos em breve</span></div>
+        <div class="placeholder-box aspect-square"><span>Fotos em breve</span></div>
+        <div class="placeholder-box aspect-square"><span>Fotos em breve</span></div>
+        <div class="placeholder-box aspect-square"><span>Fotos em breve</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quem-apoiamos" class="scroll-mt-20 max-w-5xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+    <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-8">Quem apoiamos</h2>
+    <div class="max-w-2xl space-y-5 text-marrom/90 leading-relaxed text-[17px] mb-10">
+      <p>O Bam's Friends busca apoiar ONGs e protetores independentes que atuam diretamente com animais em situação de abandono, resgate e vulnerabilidade.</p>
+      <p>Cada iniciativa apoiada possui sua própria realidade e necessidades. Por isso, nosso objetivo é contribuir de maneira que o recurso possa fazer diferença no trabalho que já é realizado por essas pessoas.</p>
+      <p>Nesta primeira etapa, serão 10 iniciativas beneficiadas, sendo 6 ONGs e 4 protetores independentes. Cada uma receberá R$1.500.</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4">
+      <div class="placeholder-box aspect-square"><span>Em breve</span></div>
+      <div class="placeholder-box aspect-square"><span>Em breve</span></div>
+      <div class="placeholder-box aspect-square"><span>Em breve</span></div>
+      <div class="placeholder-box aspect-square"><span>Em breve</span></div>
+      <div class="placeholder-box aspect-square"><span>Em breve</span></div>
+      <div class="placeholder-box aspect-square"><span>Em breve</span></div>
+      <div class="placeholder-box aspect-square"><span>Em breve</span></div>
+      <div class="placeholder-box aspect-square"><span>Em breve</span></div>
+      <div class="placeholder-box aspect-square"><span>Em breve</span></div>
+      <div class="placeholder-box aspect-square"><span>Em breve</span></div>
+    </div>
+  </section>
+
+  <div class="divisor" aria-hidden="true"></div>
+
+  <section id="prestacao-de-contas" class="scroll-mt-20 bg-creme">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+      <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-8">Prestação de contas</h2>
+      <div class="space-y-5 text-marrom/90 leading-relaxed text-[17px] mb-10">
+        <p>A transparência é uma parte importante do Bam's Friends.</p>
+        <p>Aqui reuniremos os registros das arrecadações, valores recebidos, doações realizadas e informações sobre as iniciativas beneficiadas pelo projeto.</p>
+        <p>Nosso objetivo é que quem contribui com o Bam's Friends possa acompanhar para onde a ajuda está indo e conhecer os resultados das ações realizadas.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="placeholder-box aspect-[4/3]"><span>Documento em breve</span></div>
+        <div class="placeholder-box aspect-[4/3]"><span>Documento em breve</span></div>
+        <div class="placeholder-box aspect-[4/3]"><span>Documento em breve</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-apoiar" class="scroll-mt-20 max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+    <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-8">Como apoiar</h2>
+    <div class="space-y-5 text-marrom/90 leading-relaxed text-[17px] mb-10">
+      <p>Você pode fazer parte do Bam's Friends de diferentes formas.</p>
+      <p>Além das campanhas e rifas realizadas pelo projeto, você também pode ajudar compartilhando nossas ações, divulgando o trabalho das iniciativas apoiadas e acompanhando nossas redes sociais.</p>
+      <p>Para quem quiser contribuir diretamente com o projeto:</p>
+    </div>
+
+    <div class="bg-vinho rounded-2xl px-6 py-8 sm:px-10 sm:py-10 text-center">
+      <p class="font-display font-600 text-dourado uppercase tracking-wide text-sm mb-3">Chave PIX</p>
+      <p id="pix-key" class="font-display font-700 text-white text-lg sm:text-2xl break-all mb-6">projetobamsfriends@gmail.com</p>
+      <button id="copiar-pix" type="button" class="inline-flex items-center gap-2 bg-dourado hover:bg-dourado-escuro text-marrom-escuro font-display font-600 px-6 py-3 rounded-full transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        <span id="copiar-pix-texto">Copiar chave PIX</span>
+      </button>
+    </div>
+
+    <p class="text-center text-marrom/80 mt-8 text-[15px]">Toda contribuição ajuda o Bam's Friends a continuar realizando ações e apoiando a causa animal.</p>
+  </section>
+
+  <div class="divisor" aria-hidden="true"></div>
+
+  <section id="proximos-passos" class="scroll-mt-20 bg-creme">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+      <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-8">Próximos passos</h2>
+      <div class="space-y-5 text-marrom/90 leading-relaxed text-[17px]">
+        <p>O Bam's Friends está apenas começando.</p>
+        <p>Queremos continuar realizando arrecadações, criando ações presenciais, apoiando novas ONGs e protetores independentes e encontrando novas formas de contribuir com a causa animal.</p>
+        <p>Não temos um limite de onde o projeto pode chegar. Conforme novas oportunidades e parcerias surgirem, queremos levar o Bam's Friends para diferentes lugares do Brasil e continuar transformando a união do fandom em ajuda de verdade.</p>
+        <p>Acompanhe nossas redes para ficar por dentro das próximas ações.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faca-parte" class="scroll-mt-20 max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24 text-center">
+    <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-8">Faça parte</h2>
+    <div class="space-y-5 text-marrom/90 leading-relaxed text-[17px]">
+      <p>A causa animal precisa de muitas mãos.</p>
+      <p>Seja ajudando, divulgando, participando das nossas ações ou simplesmente conhecendo e compartilhando o trabalho de quem dedica sua vida aos animais, você também pode fazer parte dessa corrente.</p>
+      <p class="font-display font-600 text-vinho text-xl">Juntos, podemos transformar carinho em cuidado.</p>
+    </div>
+  </section>
+
+  <div class="divisor" aria-hidden="true"></div>
+
+  <section id="redes-sociais" class="scroll-mt-20 bg-creme">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24 text-center">
+      <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-10">Acompanhe o Bam's Friends</h2>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <a href="https://instagram.com/bams.friends" target="_blank" rel="noopener noreferrer" class="rede-card">
+          <svg class="w-8 h-8 text-vinho" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          <span class="font-display font-600 text-marrom-escuro">@bams.friends</span>
+          <span class="text-sm text-marrom/70">Perfil oficial do Bam's Friends</span>
+        </a>
+        <a href="https://instagram.com/infojungkookbr" target="_blank" rel="noopener noreferrer" class="rede-card">
+          <svg class="w-8 h-8 text-vinho" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          <span class="font-display font-600 text-marrom-escuro">@infojungkookbr</span>
+          <span class="text-sm text-marrom/70">Info Jungkook Brasil</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="scroll-mt-20 max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24 text-center">
+    <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-6">Contato</h2>
+    <p class="text-marrom/90 leading-relaxed text-[17px] mb-6">Para parcerias, apoio ao projeto ou assuntos relacionados ao Bam's Friends:</p>
+    <a href="mailto:projetobamsfriends@gmail.com" class="inline-flex items-center gap-2 bg-vinho hover:bg-vinho-claro text-white font-display font-600 px-7 py-3.5 rounded-full transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      projetobamsfriends@gmail.com
+    </a>
+  </section>
+
+</main>
+
+<footer class="bg-marrom-escuro text-creme">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 mb-10">
+      <img src="assets/logo/web/logo-escuro.png" alt="Bam's Friends: Patinhas de Ouro" class="h-16 w-auto">
+      <div class="flex items-center gap-5">
+        <a href="https://instagram.com/bams.friends" target="_blank" rel="noopener noreferrer" aria-label="Instagram do Bam's Friends" class="text-creme/80 hover:text-dourado transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        </a>
+        <a href="https://instagram.com/infojungkookbr" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Info Jungkook Brasil" class="text-creme/80 hover:text-dourado transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        </a>
+        <a href="mailto:projetobamsfriends@gmail.com" aria-label="Enviar e-mail para o Bam's Friends" class="text-creme/80 hover:text-dourado transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="border-t border-creme/15 pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-creme/70">
+      <p>Bam's Friends: Patinhas de Ouro. Projeto da Info Jungkook Brasil em apoio à causa animal.</p>
+      <p>© Bam's Friends. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

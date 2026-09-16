@@ -1,0 +1,6 @@
+# Arquivos de referência de posts (PSD/AI brutos, alguns acima do limite de 100MB do GitHub).
+# Servem só como referência visual local, não são usados pelo site.
+assets/posts/
+
+.DS_Store
+Thumbs.db
