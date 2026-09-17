@@ -2,5 +2,7 @@
 # Servem só como referência visual local, não são usados pelo site.
 assets/posts/
 
+node_modules/
+
 .DS_Store
 Thumbs.db

@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dourado: #FCB629;
+  --color-dourado-escuro: #E09E14;
+  --color-vinho: #6E2A3F;
+  --color-vinho-claro: #8C3A54;
+  --color-marrom: #4A2F26;
+  --color-marrom-escuro: #3A241E;
+  --color-terracota: #AA5B21;
+  --color-terracota-escuro: #844318;
+  --color-creme: #F9EBE1;
+  --color-creme-escuro: #F0DBC9;
+  --color-oliva: #768412;
+  --color-rosa: #F7B7CD;
+  --font-display: 'Fredoka', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: 'Fredoka', sans-serif;
+}
+
+.font-500 { font-weight: 500; }
+.font-600 { font-weight: 600; }
+.font-700 { font-weight: 700; }
+
+.stat-card {
+  background: #F9EBE1;
+  border-radius: 16px;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+
+.placeholder-box {
+  border: 2px dashed #E0C9B4;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(135deg, #FBF3EC, #FBF3EC 10px, #F6E9DD 10px, #F6E9DD 20px);
+}
+
+.placeholder-box span {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #AA5B21;
+  text-align: center;
+  padding: 0 8px;
+}
+
+.rede-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.15s ease;
+}
+
+.rede-card:hover {
+  transform: translateY(-2px);
+}
+
+.divisor {
+  height: 3px;
+  max-width: 120px;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #FCB629, transparent);
+}
+
+.menu-link {
+  border-bottom: 1px solid #F0DBC9;
+}
