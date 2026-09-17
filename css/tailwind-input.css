@@ -74,14 +74,6 @@ body {
   transform: translateY(-2px);
 }
 
-.divisor {
-  height: 3px;
-  max-width: 120px;
-  margin: 0 auto;
-  border-radius: 999px;
-  background: linear-gradient(90deg, transparent, #FCB629, transparent);
-}
-
 .menu-link {
   border-bottom: 1px solid #F0DBC9;
 }
