@@ -25,6 +25,7 @@
       <a href="#sobre" class="hover:text-vinho transition-colors">Sobre</a>
       <a href="#acoes" class="hover:text-vinho transition-colors">Ações</a>
       <a href="#quem-apoiamos" class="hover:text-vinho transition-colors">Quem apoiamos</a>
+      <a href="#votacao" class="hover:text-vinho transition-colors">Votação</a>
       <a href="#prestacao-de-contas" class="hover:text-vinho transition-colors">Transparência</a>
       <a href="#contato" class="hover:text-vinho transition-colors">Contato</a>
     </nav>
@@ -43,6 +44,7 @@
     <a href="#sobre" class="menu-link py-1">Sobre</a>
     <a href="#acoes" class="menu-link py-1">Ações</a>
     <a href="#quem-apoiamos" class="menu-link py-1">Quem apoiamos</a>
+    <a href="#votacao" class="menu-link py-1">Votação</a>
     <a href="#prestacao-de-contas" class="menu-link py-1">Transparência</a>
     <a href="#contato" class="menu-link py-1">Contato</a>
     <a href="#como-apoiar" class="menu-link mt-1 inline-flex items-center justify-center gap-2 bg-dourado text-marrom-escuro font-600 px-5 py-3 rounded-full">Apoiar agora</a>
@@ -172,6 +174,74 @@
   </section>
 
 
+  <section id="votacao" class="scroll-mt-20 bg-vinho" data-turnstile-sitekey="1x00000000000000000000AA">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+      <div class="max-w-2xl mx-auto text-center mb-12">
+        <h2 class="font-display font-700 text-dourado text-2xl sm:text-3xl mb-4">Escolha a ONG que vai receber o apoio</h2>
+        <p class="text-creme leading-relaxed text-[17px]">Conheça as iniciativas abaixo e vote na que você quer ver apoiada. Cada pessoa vota uma vez.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <article class="ong-card" data-ong="patinhas-felizes">
+          <div class="placeholder-box aspect-[4/3] rounded-b-none"><span>Foto em breve</span></div>
+          <div class="ong-card-corpo">
+            <h3 class="font-display font-700 text-vinho text-xl mb-4">Refúgio Patinhas Felizes</h3>
+            <p class="ong-rotulo">Quem recebe</p>
+            <p class="ong-texto">Cerca de 40 cães e gatos resgatados de situação de maus-tratos, em reabilitação.</p>
+            <p class="ong-rotulo">Uso do valor</p>
+            <p class="ong-texto">Ração, medicamentos e custeio de castrações.</p>
+            <div class="ong-acao">
+              <button type="button" class="btn-votar">Votar nesta ONG</button>
+              <div class="ong-resultado" hidden>
+                <div class="ong-barra"><div class="ong-barra-preench"></div></div>
+                <p class="ong-resultado-texto"></p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="ong-card" data-ong="amigos-quatro-patas">
+          <div class="placeholder-box aspect-[4/3] rounded-b-none"><span>Foto em breve</span></div>
+          <div class="ong-card-corpo">
+            <h3 class="font-display font-700 text-vinho text-xl mb-4">Protetora Amigos de Quatro Patas</h3>
+            <p class="ong-rotulo">Quem recebe</p>
+            <p class="ong-texto">Animais idosos e com deficiência, de adoção mais difícil.</p>
+            <p class="ong-rotulo">Uso do valor</p>
+            <p class="ong-texto">Manutenção do abrigo e cuidados veterinários especializados.</p>
+            <div class="ong-acao">
+              <button type="button" class="btn-votar">Votar nesta ONG</button>
+              <div class="ong-resultado" hidden>
+                <div class="ong-barra"><div class="ong-barra-preench"></div></div>
+                <p class="ong-resultado-texto"></p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="ong-card" data-ong="patas-do-bem">
+          <div class="placeholder-box aspect-[4/3] rounded-b-none"><span>Foto em breve</span></div>
+          <div class="ong-card-corpo">
+            <h3 class="font-display font-700 text-vinho text-xl mb-4">Associação Patas do Bem</h3>
+            <p class="ong-rotulo">Quem recebe</p>
+            <p class="ong-texto">Gatos de rua de uma comunidade específica, em programa de castração e vacinação.</p>
+            <p class="ong-rotulo">Uso do valor</p>
+            <p class="ong-texto">Campanha de castração em massa e feiras de adoção.</p>
+            <div class="ong-acao">
+              <button type="button" class="btn-votar">Votar nesta ONG</button>
+              <div class="ong-resultado" hidden>
+                <div class="ong-barra"><div class="ong-barra-preench"></div></div>
+                <p class="ong-resultado-texto"></p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div id="votacao-captcha" class="flex justify-center mt-8"></div>
+      <p id="votacao-status" class="text-center text-creme text-[15px] mt-6 min-h-[1.5rem]" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
   <section id="prestacao-de-contas" class="scroll-mt-20 bg-creme">
     <div class="max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
       <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-8">Prestação de contas</h2>
@@ -286,5 +356,7 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/votacao.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </body>
 </html>

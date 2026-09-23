@@ -74,6 +74,97 @@ body {
   transform: translateY(-2px);
 }
 
+.ong-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ong-card .placeholder-box {
+  border-width: 0 0 2px 0;
+  border-radius: 0;
+}
+
+.ong-card-corpo {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ong-rotulo {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #AA5B21;
+  margin-bottom: 4px;
+}
+
+.ong-texto {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4A2F26;
+  margin-bottom: 1rem;
+}
+
+.ong-acao {
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.btn-votar {
+  width: 100%;
+  background: #FCB629;
+  color: #3A241E;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-votar:hover:not(:disabled) {
+  background: #E09E14;
+}
+
+.btn-votar:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ong-barra {
+  height: 10px;
+  background: #F0DBC9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.ong-barra-preench {
+  height: 100%;
+  width: 0;
+  background: #6E2A3F;
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+.ong-resultado-texto {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #6E2A3F;
+  margin-top: 6px;
+  text-align: center;
+}
+
+.ong-card.escolhida {
+  outline: 4px solid #FCB629;
+}
+
 .menu-link {
   border-bottom: 1px solid #F0DBC9;
 }
