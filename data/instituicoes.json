@@ -606,5 +606,21 @@
     "instagram": "@projeto.anjosdepatas",
     "foto": "assets/instituicoes/38.webp",
     "status": "candidata"
+  },
+  {
+    "numero": 39,
+    "id": "upas",
+    "nome": "União de Proteção Animal de Salvador (UPAS)",
+    "uf": "BA",
+    "localizacao": "Salvador/BA",
+    "animais_sob_cuidados": "220 animais — 200 gatos e 20 cães",
+    "especies": "Cães e gatos",
+    "destinacao_recurso": "Ração e medicamentos",
+    "sobre": "A União de Proteção Animal de Salvador (UPAS) atua na defesa, resgate e acolhimento de animais em situação de rua, abandono e maus-tratos em Salvador. A instituição é independente e sem fins lucrativos, mantida principalmente pelo trabalho voluntário e por doações da comunidade. Além dos resgates, os animais recebem cuidados como atendimento veterinário, vacinação, vermifugação e castração, permanecendo sob os cuidados da instituição até estarem aptos para adoção. A UPAS também promove feiras e campanhas de adoção responsável e trabalha com conscientização sobre posse responsável, combate ao abandono e incentivo à castração.",
+    "uso_do_apoio": "O valor de R$ 1.500 será destinado à compra de ração e medicamentos para os animais atendidos pela instituição.",
+    "prestacao_de_contas": "A instituição confirmou que está de acordo em realizar a prestação de contas posteriormente, apresentando comprovantes da utilização do recurso.",
+    "instagram": "@uniaodeprotecaoanimalsalvador",
+    "foto": "assets/instituicoes/39.webp",
+    "status": "candidata"
   }
 ]
