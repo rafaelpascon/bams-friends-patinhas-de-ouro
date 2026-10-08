@@ -375,6 +375,447 @@ body {
   border-radius: 8px;
 }
 
+.ong-card-topo {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 0;
+}
+
+.ong-logo {
+  width: 88px;
+  height: 88px;
+  flex: none;
+  border-radius: 14px;
+  background: #F9EBE1;
+  object-fit: contain;
+}
+
+.ong-logo-vazio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #E0C9B4;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 11px;
+  color: #AA5B21;
+  text-align: center;
+}
+
+.ong-identidade {
+  min-width: 0;
+}
+
+.ong-nome {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.2;
+  color: #6E2A3F;
+  margin-bottom: 4px;
+  overflow-wrap: anywhere;
+}
+
+.ong-local {
+  font-size: 14px;
+  color: #4A2F26;
+  margin-bottom: 2px;
+}
+
+.ong-insta {
+  font-size: 14px;
+  color: #6E2A3F;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.ong-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.ong-card.expandido .ong-clamp {
+  display: block;
+  overflow: visible;
+}
+
+.ong-extra {
+  display: none;
+}
+
+.ong-card.expandido .ong-extra {
+  display: block;
+}
+
+.ong-ler-mais {
+  align-self: flex-start;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6E2A3F;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.ong-seu-voto {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6E2A3F;
+  text-align: center;
+}
+
+.ong-confirma-texto {
+  font-size: 15px;
+  font-weight: 600;
+  color: #4A2F26;
+  margin-bottom: 0.75rem;
+}
+
+.ong-confirma-botoes {
+  display: flex;
+  gap: 8px;
+}
+
+.ong-confirma-botoes .btn-votar {
+  flex: 1;
+}
+
+.btn-secundario {
+  background: transparent;
+  color: #6E2A3F;
+  border: 2px solid #6E2A3F;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.btn-secundario:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-secundario-claro {
+  background: transparent;
+  color: #F9EBE1;
+  border: 2px solid #F9EBE1;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  padding: 0.7rem 1.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.btn-secundario-claro:hover {
+  background: rgba(249, 235, 225, 0.12);
+}
+
+.votacao-controles {
+  display: grid;
+  gap: 12px;
+  max-width: 640px;
+  margin: 0 auto 1rem;
+}
+
+@media (min-width: 640px) {
+  .votacao-controles {
+    grid-template-columns: 1fr 240px;
+  }
+}
+
+.votacao-controles[hidden] {
+  display: none;
+}
+
+.campo-votacao {
+  width: 100%;
+  background: white;
+  color: #4A2F26;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 0.7rem 1.1rem;
+  font-size: 16px;
+}
+
+.campo-votacao:focus {
+  outline: none;
+  border-color: #FCB629;
+}
+
+.contempladas-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #F9EBE1;
+  margin-bottom: 12px;
+}
+
+.contemplada-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 12px;
+  min-height: 80px;
+}
+
+.contemplada-vazia {
+  justify-content: center;
+  background: rgba(249, 235, 225, 0.08);
+  border: 2px dashed rgba(249, 235, 225, 0.35);
+  color: #F9EBE1;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.contemplada-logo {
+  width: 56px;
+  height: 56px;
+  flex: none;
+  border-radius: 10px;
+  background: #F9EBE1;
+  object-fit: contain;
+}
+
+.contemplada-texto {
+  min-width: 0;
+}
+
+.contemplada-nome {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.25;
+  color: #6E2A3F;
+  overflow-wrap: anywhere;
+}
+
+.contemplada-insta {
+  font-size: 13px;
+  color: #4A2F26;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.iniciativa-card-foto {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #F9EBE1;
+}
+
+.ac-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+}
+
+.ac-rotulo {
+  display: block;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #AA5B21;
+  margin-bottom: 6px;
+}
+
+.ac-campo {
+  width: 100%;
+  border: 2px solid #F0DBC9;
+  border-radius: 999px;
+  padding: 0.7rem 1.1rem;
+  font-size: 16px;
+  color: #4A2F26;
+  margin-bottom: 8px;
+}
+
+.ac-campo:focus {
+  outline: none;
+  border-color: #FCB629;
+}
+
+.ac-erro {
+  min-height: 1.4rem;
+  font-size: 14px;
+  color: #A32D2D;
+  margin-bottom: 8px;
+}
+
+.ac-topo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.ac-etapa {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #6E2A3F;
+}
+
+.ac-fase {
+  font-size: 15px;
+  color: #4A2F26;
+}
+
+.ac-acoes {
+  display: flex;
+  gap: 8px;
+}
+
+.ac-atualizado {
+  font-size: 13px;
+  color: #4A2F26;
+  opacity: 0.7;
+  margin: 8px 0 16px;
+}
+
+.ac-resumo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ac-numero {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  color: #6E2A3F;
+}
+
+.ac-alerta {
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.ac-alerta[hidden] {
+  display: none;
+}
+
+.ac-alerta-teste {
+  background: #FAEEDA;
+  color: #633806;
+}
+
+.ac-alerta-config {
+  background: #FCEBEB;
+  color: #791F1F;
+}
+
+.ac-alerta-empate {
+  background: #FCB629;
+  color: #3A241E;
+  border: 3px solid #6E2A3F;
+  font-weight: 600;
+}
+
+.ac-empate-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.ac-empate-lista {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 6px;
+}
+
+.ac-ranking-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 12px;
+}
+
+.ac-ranking {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.ac-item {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  column-gap: 12px;
+  row-gap: 6px;
+  align-items: center;
+  background: white;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+}
+
+.ac-item-destaque {
+  border: 3px solid #FCB629;
+  padding: calc(0.75rem - 3px) calc(1rem - 3px);
+}
+
+.ac-pos {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  color: #6E2A3F;
+}
+
+.ac-nome {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.ac-uf {
+  display: block;
+  font-weight: 400;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.ac-valores {
+  font-size: 14px;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.ac-barra {
+  grid-column: 2 / -1;
+  display: block;
+  height: 8px;
+  background: #F0DBC9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.ac-barra-preench {
+  display: block;
+  height: 100%;
+  background: #6E2A3F;
+  border-radius: 999px;
+}
+
 .menu-link {
   border-bottom: 1px solid #F0DBC9;
 }

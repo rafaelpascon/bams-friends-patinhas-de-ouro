@@ -5,6 +5,7 @@
   if (!listaOngs && !listaProtetores && !listaPrestacao) return;
 
   const formatadorBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+  const VAGAS_ONG = [1, 1, 2, 2, 3, 3];
 
   function formatarDataISO(iso) {
     const partes = String(iso).split('-');
@@ -19,13 +20,17 @@
     return node;
   }
 
+  function definida(item) {
+    return item && item.status === 'definida' && item.nome;
+  }
+
   function cartaoIniciativa(item) {
     const card = el('div', 'iniciativa-card');
-    if (item.status === 'definida' && item.nome) {
+    if (definida(item)) {
       if (item.foto) {
-        const img = el('img', 'w-full aspect-square object-cover');
+        const img = el('img', 'iniciativa-card-foto');
         img.src = item.foto;
-        img.alt = 'Foto de ' + item.nome;
+        img.alt = item.nome;
         img.loading = 'lazy';
         card.appendChild(img);
       } else {
@@ -36,7 +41,7 @@
       card.appendChild(el('p', 'iniciativa-card-nome', item.nome));
       if (item.instagram) {
         const link = el('a', 'iniciativa-card-insta', '@' + item.instagram.replace(/^@/, ''));
-        link.href = 'https://instagram.com/' + item.instagram.replace(/^@/, '');
+        link.href = BF.linkInstagram(item.instagram);
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
         card.appendChild(link);
@@ -51,7 +56,7 @@
 
   function cartaoRepasse(item) {
     const card = el('div', 'repasse-card');
-    card.appendChild(el('p', 'repasse-card-nome', item.nome || 'Em breve'));
+    card.appendChild(el('p', 'repasse-card-nome', definida(item) ? item.nome : 'Em breve'));
 
     const repasse = item.repasse;
     if (!repasse) {
@@ -110,24 +115,67 @@
     return card;
   }
 
-  fetch('data/iniciativas.json')
-    .then(function (r) { return r.json(); })
-    .then(function (iniciativas) {
-      if (listaOngs && listaProtetores) {
-        iniciativas.forEach(function (item) {
-          const alvo = item.tipo === 'ong' ? listaOngs : listaProtetores;
-          alvo.appendChild(cartaoIniciativa(item));
+  function itemDeInstituicao(inst) {
+    return {
+      status: 'definida',
+      nome: inst.nome,
+      instagram: inst.instagram,
+      foto: inst.foto,
+      repasse: inst.repasse || null,
+    };
+  }
+
+  // As 6 vagas de ONG são as vencedoras publicadas, por ordem de etapa. Sem dado, ficam "Em breve".
+  function vagasDeOng(instituicoes, estado) {
+    const porId = {};
+    instituicoes.forEach(function (i) {
+      porId[i.id] = i;
+    });
+    const porEtapa = { 1: [], 2: [], 3: [] };
+    if (estado && estado.vencedoras) {
+      [1, 2, 3].forEach(function (n) {
+        (estado.vencedoras[n] || []).forEach(function (id) {
+          if (porId[id]) porEtapa[n].push(itemDeInstituicao(porId[id]));
         });
-      }
-      if (listaPrestacao) {
-        iniciativas.forEach(function (item) {
-          listaPrestacao.appendChild(cartaoRepasse(item));
-        });
-      }
+      });
+    }
+    const usados = { 1: 0, 2: 0, 3: 0 };
+    return VAGAS_ONG.map(function (etapa) {
+      const item = porEtapa[etapa][usados[etapa]];
+      usados[etapa] += 1;
+      return item || { status: 'em_breve', nome: null, repasse: null };
+    });
+  }
+
+  const protetores = fetch('data/iniciativas.json')
+    .then(function (r) {
+      return r.json();
     })
     .catch(function () {
-      [listaOngs, listaProtetores, listaPrestacao].forEach(function (container) {
-        if (container) container.textContent = 'Não foi possível carregar as iniciativas agora.';
-      });
+      return [];
     });
+  const ongs = Promise.all([
+    BF.carregarInstituicoes().catch(function () {
+      return [];
+    }),
+    BF.obterEstadoInicial().catch(function () {
+      return null;
+    }),
+  ]).then(function (res) {
+    return vagasDeOng(res[0], res[1]);
+  });
+
+  Promise.all([ongs, protetores]).then(function (res) {
+    const vagas = res[0];
+    const listaProtetoresDados = res[1];
+    if (listaOngs) vagas.forEach(function (item) { listaOngs.appendChild(cartaoIniciativa(item)); });
+    if (listaProtetores) {
+      listaProtetoresDados.forEach(function (item) { listaProtetores.appendChild(cartaoIniciativa(item)); });
+    }
+    if (listaPrestacao) {
+      vagas.concat(listaProtetoresDados).forEach(function (item) {
+        listaPrestacao.appendChild(cartaoRepasse(item));
+      });
+    }
+  });
 })();

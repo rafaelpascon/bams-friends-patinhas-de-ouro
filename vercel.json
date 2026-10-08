@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/*.js": {
+      "includeFiles": "data/instituicoes.json"
+    }
+  },
+  "headers": [
+    {
+      "source": "/acompanhar(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
+  ]
+}

@@ -1,10 +1,4 @@
 [
-  { "id": "ong-1", "tipo": "ong", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },
-  { "id": "ong-2", "tipo": "ong", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },
-  { "id": "ong-3", "tipo": "ong", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },
-  { "id": "ong-4", "tipo": "ong", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },
-  { "id": "ong-5", "tipo": "ong", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },
-  { "id": "ong-6", "tipo": "ong", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },
   { "id": "protetor-1", "tipo": "protetor", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },
   { "id": "protetor-2", "tipo": "protetor", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },
   { "id": "protetor-3", "tipo": "protetor", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },
