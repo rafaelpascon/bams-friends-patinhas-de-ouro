@@ -2,6 +2,9 @@
 # Servem só como referência visual local, não são usados pelo site.
 assets/posts/
 
+# Originais das fotos das instituições (baixados do Drive). Só os WebP de assets/instituicoes/ vão pro Git.
+assets/instituicoes-originais/
+
 # Fotos que vieram misturadas na pasta do evento mas são de outra pessoa/ocasião
 # (sem relação com o Bam's Friends), fora do repositório por não serem usadas e por privacidade.
 assets/fotos-evento/IMG_20260913_205451_603.jpg

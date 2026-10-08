@@ -168,71 +168,37 @@
   </section>
 
 
-  <section id="votacao" class="scroll-mt-20 bg-vinho" data-turnstile-sitekey="0x4AAAAAAFE7UwQi3a2032JY">
+  <section id="votacao" class="scroll-mt-20 bg-vinho">
     <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
-      <div class="max-w-2xl mx-auto text-center mb-12">
-        <h2 class="font-display font-700 text-dourado text-2xl sm:text-3xl mb-4">Escolha a ONG que vai receber o apoio</h2>
-        <p class="text-creme leading-relaxed text-[17px]">Conheça as iniciativas abaixo e vote na que você quer ver apoiada. Cada pessoa vota uma vez.</p>
+      <div class="max-w-2xl mx-auto text-center mb-10">
+        <h2 class="font-display font-700 text-dourado text-2xl sm:text-3xl mb-4">Escolha quem vai receber o apoio</h2>
+        <p id="votacao-etapa" class="font-display font-600 text-white text-lg"></p>
+        <p id="votacao-prazo" class="text-creme text-[17px] mt-1"></p>
+        <p class="text-creme/80 text-[15px] mt-3">Cada pessoa vota em 1 instituição por etapa.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
-        <article class="ong-card" data-ong="patinhas-felizes">
-          <div class="placeholder-box aspect-[4/3] rounded-b-none"><span>Foto em breve</span></div>
-          <div class="ong-card-corpo">
-            <h3 class="font-display font-700 text-vinho text-xl mb-4">Refúgio Patinhas Felizes</h3>
-            <p class="ong-rotulo">Quem recebe</p>
-            <p class="ong-texto">Cerca de 40 cães e gatos resgatados de situação de maus-tratos, em reabilitação.</p>
-            <p class="ong-rotulo">Uso do valor</p>
-            <p class="ong-texto">Ração, medicamentos e custeio de castrações.</p>
-            <div class="ong-acao">
-              <button type="button" class="btn-votar">Votar nesta ONG</button>
-              <div class="ong-resultado" hidden>
-                <div class="ong-barra"><div class="ong-barra-preench"></div></div>
-                <p class="ong-resultado-texto"></p>
-              </div>
-            </div>
-          </div>
-        </article>
+      <div id="votacao-aviso" class="max-w-2xl mx-auto text-center text-creme text-[17px] mb-8" aria-live="polite"></div>
 
-        <article class="ong-card" data-ong="amigos-quatro-patas">
-          <div class="placeholder-box aspect-[4/3] rounded-b-none"><span>Foto em breve</span></div>
-          <div class="ong-card-corpo">
-            <h3 class="font-display font-700 text-vinho text-xl mb-4">Protetora Amigos de Quatro Patas</h3>
-            <p class="ong-rotulo">Quem recebe</p>
-            <p class="ong-texto">Animais idosos e com deficiência, de adoção mais difícil.</p>
-            <p class="ong-rotulo">Uso do valor</p>
-            <p class="ong-texto">Manutenção do abrigo e cuidados veterinários especializados.</p>
-            <div class="ong-acao">
-              <button type="button" class="btn-votar">Votar nesta ONG</button>
-              <div class="ong-resultado" hidden>
-                <div class="ong-barra"><div class="ong-barra-preench"></div></div>
-                <p class="ong-resultado-texto"></p>
-              </div>
-            </div>
-          </div>
-        </article>
+      <div id="votacao-controles" class="votacao-controles" hidden>
+        <label class="sr-only" for="votacao-busca">Buscar instituição por nome</label>
+        <input id="votacao-busca" type="search" placeholder="Buscar por nome" autocomplete="off" class="campo-votacao">
+        <label class="sr-only" for="votacao-uf">Filtrar por estado</label>
+        <select id="votacao-uf" class="campo-votacao"></select>
+      </div>
+      <p id="votacao-contador" class="text-center text-creme text-[15px] mb-6" aria-live="polite" hidden></p>
 
-        <article class="ong-card" data-ong="patas-do-bem">
-          <div class="placeholder-box aspect-[4/3] rounded-b-none"><span>Foto em breve</span></div>
-          <div class="ong-card-corpo">
-            <h3 class="font-display font-700 text-vinho text-xl mb-4">Associação Patas do Bem</h3>
-            <p class="ong-rotulo">Quem recebe</p>
-            <p class="ong-texto">Gatos de rua de uma comunidade específica, em programa de castração e vacinação.</p>
-            <p class="ong-rotulo">Uso do valor</p>
-            <p class="ong-texto">Campanha de castração em massa e feiras de adoção.</p>
-            <div class="ong-acao">
-              <button type="button" class="btn-votar">Votar nesta ONG</button>
-              <div class="ong-resultado" hidden>
-                <div class="ong-barra"><div class="ong-barra-preench"></div></div>
-                <p class="ong-resultado-texto"></p>
-              </div>
-            </div>
-          </div>
-        </article>
+      <div id="votacao-lista" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+      <div class="text-center mt-8">
+        <button id="votacao-mais" type="button" class="btn-secundario-claro" hidden>Carregar mais</button>
       </div>
 
       <div id="votacao-captcha" class="flex justify-center mt-8"></div>
-      <p id="votacao-status" class="text-center text-creme text-[15px] mt-6 min-h-[1.5rem]" role="status" aria-live="polite"></p>
+      <p id="votacao-status" class="text-center text-creme text-[15px] mt-6 min-h-[1.5rem]" role="status" aria-live="polite">Carregando a votação…</p>
+
+      <div class="mt-16 pt-12 border-t border-creme/20">
+        <h3 class="font-display font-700 text-dourado text-xl sm:text-2xl text-center mb-8">Instituições contempladas</h3>
+        <div id="contempladas" class="grid gap-8 sm:grid-cols-3"></div>
+      </div>
     </div>
   </section>
 
@@ -355,6 +321,7 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/dados.js"></script>
 <script src="js/iniciativas.js"></script>
 <script src="js/meta.js"></script>
 <script src="js/votacao.js"></script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Acompanhamento da votação</title>
+<link rel="icon" type="image/png" href="/assets/logo/web/logo-claro.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="font-body text-marrom bg-creme antialiased min-h-screen">
+
+<main class="max-w-4xl mx-auto px-5 sm:px-8 py-8 sm:py-12">
+  <header class="flex items-center gap-4 mb-8">
+    <img src="/assets/logo/web/logo-claro.png" alt="Bam's Friends: Patinhas de Ouro" class="h-12 w-auto">
+    <h1 class="font-display font-700 text-vinho text-xl sm:text-2xl">Acompanhamento da votação</h1>
+  </header>
+
+  <section id="acesso" class="ac-card max-w-md">
+    <form id="form-acesso" novalidate>
+      <label for="senha" class="ac-rotulo">Senha de acesso</label>
+      <input id="senha" type="password" autocomplete="current-password" class="ac-campo" required>
+      <p id="acesso-erro" class="ac-erro" role="alert"></p>
+      <button type="submit" class="btn-votar">Entrar</button>
+    </form>
+  </section>
+
+  <section id="painel" hidden>
+    <div id="aviso-teste" class="ac-alerta ac-alerta-teste" hidden>Modo de teste: esta tela está contando só votos de teste.</div>
+
+    <div class="ac-topo">
+      <div>
+        <p id="ac-etapa" class="ac-etapa"></p>
+        <p id="ac-fase" class="ac-fase"></p>
+      </div>
+      <div class="ac-acoes">
+        <button id="atualizar" type="button" class="btn-secundario">Atualizar</button>
+        <button id="sair" type="button" class="btn-secundario">Sair</button>
+      </div>
+    </div>
+    <p id="ac-atualizado" class="ac-atualizado"></p>
+
+    <div class="ac-resumo">
+      <div class="ac-card">
+        <p class="ac-rotulo">Total de votos</p>
+        <p id="ac-total" class="ac-numero"></p>
+      </div>
+      <div class="ac-card">
+        <p class="ac-rotulo">Votos na última hora</p>
+        <p id="ac-hora" class="ac-numero"></p>
+      </div>
+    </div>
+
+    <div id="ac-alertas"></div>
+    <div id="ac-empate" class="ac-alerta ac-alerta-empate" role="alert" hidden></div>
+
+    <div class="ac-ranking-topo">
+      <h2 class="font-display font-700 text-vinho text-lg">Ranking das candidatas</h2>
+      <button id="baixar-csv" type="button" class="btn-secundario">Baixar CSV</button>
+    </div>
+    <p id="ac-vazio" class="ac-atualizado" hidden>Ainda não há votos nesta etapa.</p>
+    <ol id="ac-ranking" class="ac-ranking"></ol>
+  </section>
+</main>
+
+<script src="/js/acompanhar.js"></script>
+</body>
+</html>
