@@ -19,6 +19,7 @@
     mais: $('votacao-mais'),
     captcha: $('votacao-captcha'),
     status: $('votacao-status'),
+    contempladasBloco: $('contempladas-bloco'),
     contempladas: $('contempladas'),
     protetoresBloco: $('protetores-contemplados'),
     protetoresLista: $('protetores-lista'),
@@ -115,11 +116,6 @@
 
   function cartaoContemplada(inst) {
     const card = criar('div', 'contemplada-card');
-    if (!inst) {
-      card.classList.add('contemplada-vazia');
-      card.appendChild(criar('span', null, 'Em breve'));
-      return card;
-    }
     if (inst.foto) {
       const img = criar('img', 'contemplada-logo');
       img.src = inst.foto;
@@ -140,14 +136,20 @@
     return card;
   }
 
+  // Só aparecem etapas com vencedoras publicadas e protetores já definidos; sem vagas vazias.
   function renderContempladas() {
     el.contempladas.innerHTML = '';
+    let colunas = 0;
     [1, 2, 3].forEach(function (n) {
+      const instituicoes = ((estado.vencedoras && estado.vencedoras[n]) || [])
+        .map(function (id) { return porId[id]; })
+        .filter(Boolean);
+      if (!instituicoes.length) return;
       const coluna = criar('div', 'contempladas-coluna');
       coluna.appendChild(criar('h4', 'contempladas-titulo', 'Etapa ' + n));
-      const ids = (estado.vencedoras && estado.vencedoras[n]) || [];
-      for (let i = 0; i < 2; i++) coluna.appendChild(cartaoContemplada(porId[ids[i]]));
+      instituicoes.forEach(function (inst) { coluna.appendChild(cartaoContemplada(inst)); });
       el.contempladas.appendChild(coluna);
+      colunas += 1;
     });
 
     const definidos = protetores.filter(function (p) {
@@ -158,6 +160,8 @@
       el.protetoresLista.appendChild(cartaoContemplada(p));
     });
     el.protetoresBloco.hidden = definidos.length === 0;
+    el.contempladas.hidden = colunas === 0;
+    el.contempladasBloco.hidden = colunas === 0 && definidos.length === 0;
   }
 
   function preencherAcao(card, inst) {

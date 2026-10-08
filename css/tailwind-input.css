@@ -520,6 +520,28 @@ body {
   border-color: #FCB629;
 }
 
+.contempladas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.contempladas-grid .contempladas-coluna {
+  flex: 1 1 260px;
+  max-width: 340px;
+}
+
+#protetores-lista {
+  gap: 0.75rem;
+}
+
+#protetores-lista .contemplada-card {
+  flex: 1 1 260px;
+  max-width: 300px;
+  margin-bottom: 0;
+}
+
 .contempladas-titulo {
   font-family: 'Fredoka', sans-serif;
   font-weight: 600;
@@ -539,16 +561,6 @@ body {
   padding: 12px;
   margin-bottom: 12px;
   min-height: 80px;
-}
-
-.contemplada-vazia {
-  justify-content: center;
-  background: rgba(249, 235, 225, 0.08);
-  border: 2px dashed rgba(249, 235, 225, 0.35);
-  color: #F9EBE1;
-  font-family: 'Fredoka', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
 }
 
 .contemplada-logo {

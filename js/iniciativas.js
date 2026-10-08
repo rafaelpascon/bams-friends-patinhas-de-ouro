@@ -3,7 +3,6 @@
   if (!listaPrestacao) return;
 
   const formatadorBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-  const VAGAS_ONG = [1, 1, 2, 2, 3, 3];
 
   function formatarDataISO(iso) {
     const partes = String(iso).split('-');
@@ -24,7 +23,7 @@
 
   function cartaoRepasse(item) {
     const card = el('div', 'repasse-card');
-    card.appendChild(el('p', 'repasse-card-nome', definida(item) ? item.nome : 'Em breve'));
+    card.appendChild(el('p', 'repasse-card-nome', item.nome));
 
     const repasse = item.repasse;
     if (!repasse) {
@@ -93,26 +92,21 @@
     };
   }
 
-  // As 6 vagas de ONG são as vencedoras publicadas, por ordem de etapa. Sem dado, ficam "Em breve".
-  function vagasDeOng(instituicoes, estado) {
+  // As ONGs são as vencedoras publicadas, por ordem de etapa.
+  function ongsVencedoras(instituicoes, estado) {
     const porId = {};
     instituicoes.forEach(function (i) {
       porId[i.id] = i;
     });
-    const porEtapa = { 1: [], 2: [], 3: [] };
+    const itens = [];
     if (estado && estado.vencedoras) {
       [1, 2, 3].forEach(function (n) {
         (estado.vencedoras[n] || []).forEach(function (id) {
-          if (porId[id]) porEtapa[n].push(itemDeInstituicao(porId[id]));
+          if (porId[id]) itens.push(itemDeInstituicao(porId[id]));
         });
       });
     }
-    const usados = { 1: 0, 2: 0, 3: 0 };
-    return VAGAS_ONG.map(function (etapa) {
-      const item = porEtapa[etapa][usados[etapa]];
-      usados[etapa] += 1;
-      return item || { status: 'em_breve', nome: null, repasse: null };
-    });
+    return itens;
   }
 
   const ongs = Promise.all([
@@ -123,11 +117,11 @@
       return null;
     }),
   ]).then(function (res) {
-    return vagasDeOng(res[0], res[1]);
+    return ongsVencedoras(res[0], res[1]);
   });
 
   Promise.all([ongs, BF.carregarProtetores()]).then(function (res) {
-    res[0].concat(res[1]).forEach(function (item) {
+    res[0].concat(res[1]).filter(definida).forEach(function (item) {
       listaPrestacao.appendChild(cartaoRepasse(item));
     });
   });

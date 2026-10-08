@@ -187,12 +187,12 @@
       <div id="votacao-captcha" class="flex justify-center mt-8"></div>
       <p id="votacao-status" class="text-center text-creme text-[15px] mt-6 min-h-[1.5rem]" role="status" aria-live="polite">Carregando a votação…</p>
 
-      <div class="mt-16 pt-12 border-t border-creme/20">
+      <div id="contempladas-bloco" class="mt-16 pt-12 border-t border-creme/20" hidden>
         <h3 class="font-display font-700 text-dourado text-xl sm:text-2xl text-center mb-8">Instituições contempladas</h3>
-        <div id="contempladas" class="grid gap-8 sm:grid-cols-3"></div>
-        <div id="protetores-contemplados" class="mt-4" hidden>
-          <h4 class="contempladas-titulo">Protetores independentes</h4>
-          <div id="protetores-lista" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"></div>
+        <div id="contempladas" class="contempladas-grid"></div>
+        <div id="protetores-contemplados" class="mt-8" hidden>
+          <h4 class="contempladas-titulo text-center">Protetores independentes</h4>
+          <div id="protetores-lista" class="contempladas-grid"></div>
         </div>
       </div>
     </div>
