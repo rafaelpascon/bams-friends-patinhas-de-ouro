@@ -2,6 +2,7 @@
   const BF = (window.BF = window.BF || {});
   let instituicoes;
   let estadoInicial;
+  let protetores;
 
   BF.carregarInstituicoes = function () {
     if (!instituicoes) {
@@ -11,6 +12,19 @@
       });
     }
     return instituicoes;
+  };
+
+  BF.carregarProtetores = function () {
+    if (!protetores) {
+      protetores = fetch('data/iniciativas.json')
+        .then(function (r) {
+          return r.ok ? r.json() : [];
+        })
+        .catch(function () {
+          return [];
+        });
+    }
+    return protetores;
   };
 
   BF.carregarEstado = function () {

@@ -24,7 +24,6 @@
     <nav class="hidden lg:flex items-center gap-8 font-display text-[15px] font-500 text-marrom">
       <a href="#sobre" class="hover:text-vinho transition-colors">Sobre</a>
       <a href="#acoes" class="hover:text-vinho transition-colors">Ações</a>
-      <a href="#quem-apoiamos" class="hover:text-vinho transition-colors">Quem apoiamos</a>
       <a href="#votacao" class="hover:text-vinho transition-colors">Votação</a>
       <a href="#prestacao-de-contas" class="hover:text-vinho transition-colors">Transparência</a>
       <a href="#contato" class="hover:text-vinho transition-colors">Contato</a>
@@ -43,7 +42,6 @@
   <nav id="menu-mobile" class="hidden lg:hidden border-t border-creme-escuro bg-white px-5 py-4 flex flex-col gap-4 font-display font-500 text-marrom">
     <a href="#sobre" class="menu-link py-1">Sobre</a>
     <a href="#acoes" class="menu-link py-1">Ações</a>
-    <a href="#quem-apoiamos" class="menu-link py-1">Quem apoiamos</a>
     <a href="#votacao" class="menu-link py-1">Votação</a>
     <a href="#prestacao-de-contas" class="menu-link py-1">Transparência</a>
     <a href="#contato" class="menu-link py-1">Contato</a>
@@ -152,26 +150,20 @@
     </div>
   </section>
 
-  <section id="quem-apoiamos" class="scroll-mt-20 max-w-5xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
-    <h2 class="font-display font-700 text-vinho text-2xl sm:text-3xl mb-8">Quem apoiamos</h2>
-    <div class="max-w-2xl space-y-5 text-marrom/90 leading-relaxed text-[17px] mb-12">
-      <p>O Bam's Friends busca apoiar ONGs e protetores independentes que atuam diretamente com animais em situação de abandono, resgate e vulnerabilidade.</p>
-      <p>Cada iniciativa possui sua própria realidade e necessidades. Por isso, nosso objetivo é contribuir com o trabalho que já é realizado por essas pessoas e instituições.</p>
-      <p>Nesta primeira etapa, serão 10 iniciativas beneficiadas, sendo 6 ONGs e 4 protetores independentes. Cada iniciativa receberá R$ 1.500,00.</p>
-    </div>
-
-    <h3 class="font-display font-600 text-terracota text-lg mb-4">ONGs e Abrigos</h3>
-    <div id="lista-ongs" class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-12" aria-live="polite"></div>
-
-    <h3 class="font-display font-600 text-terracota text-lg mb-4">Protetores Independentes</h3>
-    <div id="lista-protetores" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4" aria-live="polite"></div>
-  </section>
-
-
   <section id="votacao" class="scroll-mt-20 bg-vinho">
+    <span id="quem-apoiamos" class="block scroll-mt-20"></span>
     <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
-      <div class="max-w-2xl mx-auto text-center mb-10">
-        <h2 class="font-display font-700 text-dourado text-2xl sm:text-3xl mb-4">Escolha quem vai receber o apoio</h2>
+      <div class="max-w-2xl mx-auto mb-14">
+        <h2 class="font-display font-700 text-dourado text-2xl sm:text-3xl mb-8 text-center">Quem apoiamos</h2>
+        <div class="space-y-5 text-creme leading-relaxed text-[17px]">
+          <p>O Bam's Friends busca apoiar ONGs e protetores independentes que atuam diretamente com animais em situação de abandono, resgate e vulnerabilidade.</p>
+          <p>Cada iniciativa possui sua própria realidade e necessidades. Por isso, nosso objetivo é contribuir com o trabalho que já é realizado por essas pessoas e instituições.</p>
+          <p>Nesta primeira etapa, serão 10 iniciativas beneficiadas, sendo 6 ONGs e 4 protetores independentes. Cada iniciativa receberá R$ 1.500,00.</p>
+        </div>
+      </div>
+
+      <div class="max-w-2xl mx-auto text-center mb-10 pt-12 border-t border-creme/20">
+        <h3 class="font-display font-700 text-dourado text-xl sm:text-2xl mb-4">Escolha quem vai receber o apoio</h3>
         <p id="votacao-etapa" class="font-display font-600 text-white text-lg"></p>
         <p id="votacao-prazo" class="text-creme text-[17px] mt-1"></p>
         <p class="text-creme/80 text-[15px] mt-3">Cada pessoa vota em 1 instituição por etapa.</p>
@@ -198,6 +190,10 @@
       <div class="mt-16 pt-12 border-t border-creme/20">
         <h3 class="font-display font-700 text-dourado text-xl sm:text-2xl text-center mb-8">Instituições contempladas</h3>
         <div id="contempladas" class="grid gap-8 sm:grid-cols-3"></div>
+        <div id="protetores-contemplados" class="mt-4" hidden>
+          <h4 class="contempladas-titulo">Protetores independentes</h4>
+          <div id="protetores-lista" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"></div>
+        </div>
       </div>
     </div>
   </section>

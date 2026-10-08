@@ -173,34 +173,6 @@ body {
   background: #F0DBC9;
 }
 
-.iniciativa-card {
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  background: white;
-}
-
-.iniciativa-card .placeholder-box {
-  border-radius: 0;
-  border-width: 0 0 2px 0;
-}
-
-.iniciativa-card-nome {
-  font-family: 'Fredoka', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  color: #4A2F26;
-  padding: 10px 10px 2px;
-}
-
-.iniciativa-card-insta {
-  font-size: 13px;
-  color: #6E2A3F;
-  padding: 0 10px 10px;
-  display: inline-block;
-}
-
 .meta-card {
   background: white;
   border-radius: 16px;
@@ -606,13 +578,6 @@ body {
   color: #4A2F26;
   text-decoration: underline;
   overflow-wrap: anywhere;
-}
-
-.iniciativa-card-foto {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  background: #F9EBE1;
 }
 
 .ac-card {

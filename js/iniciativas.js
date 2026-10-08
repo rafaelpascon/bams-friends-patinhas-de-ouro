@@ -1,8 +1,6 @@
 (function () {
-  const listaOngs = document.getElementById('lista-ongs');
-  const listaProtetores = document.getElementById('lista-protetores');
   const listaPrestacao = document.getElementById('lista-prestacao-contas');
-  if (!listaOngs && !listaProtetores && !listaPrestacao) return;
+  if (!listaPrestacao) return;
 
   const formatadorBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
   const VAGAS_ONG = [1, 1, 2, 2, 3, 3];
@@ -22,36 +20,6 @@
 
   function definida(item) {
     return item && item.status === 'definida' && item.nome;
-  }
-
-  function cartaoIniciativa(item) {
-    const card = el('div', 'iniciativa-card');
-    if (definida(item)) {
-      if (item.foto) {
-        const img = el('img', 'iniciativa-card-foto');
-        img.src = item.foto;
-        img.alt = item.nome;
-        img.loading = 'lazy';
-        card.appendChild(img);
-      } else {
-        const placeholder = el('div', 'placeholder-box aspect-square');
-        placeholder.appendChild(el('span', null, item.nome));
-        card.appendChild(placeholder);
-      }
-      card.appendChild(el('p', 'iniciativa-card-nome', item.nome));
-      if (item.instagram) {
-        const link = el('a', 'iniciativa-card-insta', '@' + item.instagram.replace(/^@/, ''));
-        link.href = BF.linkInstagram(item.instagram);
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        card.appendChild(link);
-      }
-    } else {
-      const placeholder = el('div', 'placeholder-box aspect-square');
-      placeholder.appendChild(el('span', null, 'Em breve'));
-      card.appendChild(placeholder);
-    }
-    return card;
   }
 
   function cartaoRepasse(item) {
@@ -147,13 +115,6 @@
     });
   }
 
-  const protetores = fetch('data/iniciativas.json')
-    .then(function (r) {
-      return r.json();
-    })
-    .catch(function () {
-      return [];
-    });
   const ongs = Promise.all([
     BF.carregarInstituicoes().catch(function () {
       return [];
@@ -165,17 +126,9 @@
     return vagasDeOng(res[0], res[1]);
   });
 
-  Promise.all([ongs, protetores]).then(function (res) {
-    const vagas = res[0];
-    const listaProtetoresDados = res[1];
-    if (listaOngs) vagas.forEach(function (item) { listaOngs.appendChild(cartaoIniciativa(item)); });
-    if (listaProtetores) {
-      listaProtetoresDados.forEach(function (item) { listaProtetores.appendChild(cartaoIniciativa(item)); });
-    }
-    if (listaPrestacao) {
-      vagas.concat(listaProtetoresDados).forEach(function (item) {
-        listaPrestacao.appendChild(cartaoRepasse(item));
-      });
-    }
+  Promise.all([ongs, BF.carregarProtetores()]).then(function (res) {
+    res[0].concat(res[1]).forEach(function (item) {
+      listaPrestacao.appendChild(cartaoRepasse(item));
+    });
   });
 })();
