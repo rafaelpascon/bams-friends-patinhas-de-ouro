@@ -1,11 +1,8 @@
 (function () {
-  const listaOngs = document.getElementById('lista-ongs');
-  const listaProtetores = document.getElementById('lista-protetores');
   const listaPrestacao = document.getElementById('lista-prestacao-contas');
-  if (!listaOngs && !listaProtetores && !listaPrestacao) return;
+  if (!listaPrestacao) return;
 
   const formatadorBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-  const VAGAS_ONG = [1, 1, 2, 2, 3, 3];
 
   function formatarDataISO(iso) {
     const partes = String(iso).split('-');
@@ -24,39 +21,9 @@
     return item && item.status === 'definida' && item.nome;
   }
 
-  function cartaoIniciativa(item) {
-    const card = el('div', 'iniciativa-card');
-    if (definida(item)) {
-      if (item.foto) {
-        const img = el('img', 'iniciativa-card-foto');
-        img.src = item.foto;
-        img.alt = item.nome;
-        img.loading = 'lazy';
-        card.appendChild(img);
-      } else {
-        const placeholder = el('div', 'placeholder-box aspect-square');
-        placeholder.appendChild(el('span', null, item.nome));
-        card.appendChild(placeholder);
-      }
-      card.appendChild(el('p', 'iniciativa-card-nome', item.nome));
-      if (item.instagram) {
-        const link = el('a', 'iniciativa-card-insta', '@' + item.instagram.replace(/^@/, ''));
-        link.href = BF.linkInstagram(item.instagram);
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        card.appendChild(link);
-      }
-    } else {
-      const placeholder = el('div', 'placeholder-box aspect-square');
-      placeholder.appendChild(el('span', null, 'Em breve'));
-      card.appendChild(placeholder);
-    }
-    return card;
-  }
-
   function cartaoRepasse(item) {
     const card = el('div', 'repasse-card');
-    card.appendChild(el('p', 'repasse-card-nome', definida(item) ? item.nome : 'Em breve'));
+    card.appendChild(el('p', 'repasse-card-nome', item.nome));
 
     const repasse = item.repasse;
     if (!repasse) {
@@ -125,35 +92,23 @@
     };
   }
 
-  // As 6 vagas de ONG são as vencedoras publicadas, por ordem de etapa. Sem dado, ficam "Em breve".
-  function vagasDeOng(instituicoes, estado) {
+  // As ONGs são as vencedoras publicadas, por ordem de etapa.
+  function ongsVencedoras(instituicoes, estado) {
     const porId = {};
     instituicoes.forEach(function (i) {
       porId[i.id] = i;
     });
-    const porEtapa = { 1: [], 2: [], 3: [] };
+    const itens = [];
     if (estado && estado.vencedoras) {
       [1, 2, 3].forEach(function (n) {
         (estado.vencedoras[n] || []).forEach(function (id) {
-          if (porId[id]) porEtapa[n].push(itemDeInstituicao(porId[id]));
+          if (porId[id]) itens.push(itemDeInstituicao(porId[id]));
         });
       });
     }
-    const usados = { 1: 0, 2: 0, 3: 0 };
-    return VAGAS_ONG.map(function (etapa) {
-      const item = porEtapa[etapa][usados[etapa]];
-      usados[etapa] += 1;
-      return item || { status: 'em_breve', nome: null, repasse: null };
-    });
+    return itens;
   }
 
-  const protetores = fetch('data/iniciativas.json')
-    .then(function (r) {
-      return r.json();
-    })
-    .catch(function () {
-      return [];
-    });
   const ongs = Promise.all([
     BF.carregarInstituicoes().catch(function () {
       return [];
@@ -162,20 +117,12 @@
       return null;
     }),
   ]).then(function (res) {
-    return vagasDeOng(res[0], res[1]);
+    return ongsVencedoras(res[0], res[1]);
   });
 
-  Promise.all([ongs, protetores]).then(function (res) {
-    const vagas = res[0];
-    const listaProtetoresDados = res[1];
-    if (listaOngs) vagas.forEach(function (item) { listaOngs.appendChild(cartaoIniciativa(item)); });
-    if (listaProtetores) {
-      listaProtetoresDados.forEach(function (item) { listaProtetores.appendChild(cartaoIniciativa(item)); });
-    }
-    if (listaPrestacao) {
-      vagas.concat(listaProtetoresDados).forEach(function (item) {
-        listaPrestacao.appendChild(cartaoRepasse(item));
-      });
-    }
+  Promise.all([ongs, BF.carregarProtetores()]).then(function (res) {
+    res[0].concat(res[1]).filter(definida).forEach(function (item) {
+      listaPrestacao.appendChild(cartaoRepasse(item));
+    });
   });
 })();

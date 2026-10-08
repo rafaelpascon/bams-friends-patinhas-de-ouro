@@ -19,10 +19,14 @@
     mais: $('votacao-mais'),
     captcha: $('votacao-captcha'),
     status: $('votacao-status'),
+    contempladasBloco: $('contempladas-bloco'),
     contempladas: $('contempladas'),
+    protetoresBloco: $('protetores-contemplados'),
+    protetoresLista: $('protetores-lista'),
   };
 
   let porId = {};
+  let protetores = [];
   let estado = null;
   let visiveis = POR_PAGINA;
   let filtroTexto = '';
@@ -112,11 +116,6 @@
 
   function cartaoContemplada(inst) {
     const card = criar('div', 'contemplada-card');
-    if (!inst) {
-      card.classList.add('contemplada-vazia');
-      card.appendChild(criar('span', null, 'Em breve'));
-      return card;
-    }
     if (inst.foto) {
       const img = criar('img', 'contemplada-logo');
       img.src = inst.foto;
@@ -126,24 +125,43 @@
     }
     const texto = criar('div', 'contemplada-texto');
     texto.appendChild(criar('p', 'contemplada-nome', inst.nome));
-    const link = criar('a', 'contemplada-insta', inst.instagram);
-    link.href = BF.linkInstagram(inst.instagram);
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    texto.appendChild(link);
+    if (inst.instagram) {
+      const link = criar('a', 'contemplada-insta', inst.instagram);
+      link.href = BF.linkInstagram(inst.instagram);
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      texto.appendChild(link);
+    }
     card.appendChild(texto);
     return card;
   }
 
+  // Só aparecem etapas com vencedoras publicadas e protetores já definidos; sem vagas vazias.
   function renderContempladas() {
     el.contempladas.innerHTML = '';
+    let colunas = 0;
     [1, 2, 3].forEach(function (n) {
+      const instituicoes = ((estado.vencedoras && estado.vencedoras[n]) || [])
+        .map(function (id) { return porId[id]; })
+        .filter(Boolean);
+      if (!instituicoes.length) return;
       const coluna = criar('div', 'contempladas-coluna');
       coluna.appendChild(criar('h4', 'contempladas-titulo', 'Etapa ' + n));
-      const ids = (estado.vencedoras && estado.vencedoras[n]) || [];
-      for (let i = 0; i < 2; i++) coluna.appendChild(cartaoContemplada(porId[ids[i]]));
+      instituicoes.forEach(function (inst) { coluna.appendChild(cartaoContemplada(inst)); });
       el.contempladas.appendChild(coluna);
+      colunas += 1;
     });
+
+    const definidos = protetores.filter(function (p) {
+      return p.status === 'definida' && p.nome;
+    });
+    el.protetoresLista.innerHTML = '';
+    definidos.forEach(function (p) {
+      el.protetoresLista.appendChild(cartaoContemplada(p));
+    });
+    el.protetoresBloco.hidden = definidos.length === 0;
+    el.contempladas.hidden = colunas === 0;
+    el.contempladasBloco.hidden = colunas === 0 && definidos.length === 0;
   }
 
   function preencherAcao(card, inst) {
@@ -463,11 +481,12 @@
   });
   el.mais.addEventListener('click', carregarMais);
 
-  Promise.all([BF.carregarInstituicoes(), BF.obterEstadoInicial()])
+  Promise.all([BF.carregarInstituicoes(), BF.obterEstadoInicial(), BF.carregarProtetores()])
     .then(function (res) {
       res[0].forEach(function (inst) {
         porId[inst.id] = inst;
       });
+      protetores = res[2];
       aplicarEstado(res[1]);
       setInterval(function () {
         if (!document.hidden && !enviando) atualizarEstado();
