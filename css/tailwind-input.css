@@ -585,6 +585,11 @@ body {
   overflow-wrap: anywhere;
 }
 
+.contemplada-valor {
+  font-size: 13px;
+  color: #4A2F26;
+}
+
 .contemplada-insta {
   font-size: 13px;
   color: #4A2F26;
