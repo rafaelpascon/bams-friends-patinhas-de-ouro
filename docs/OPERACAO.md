@@ -3,7 +3,7 @@
 Tudo que muda no dia a dia fica no Supabase (Table Editor), sem deploy.
 
 ## Regras em uma linha
-3 etapas, 2 vencedoras por etapa (6 no total), 1 voto por pessoa em cada etapa. Quem vence uma etapa não entra nas seguintes. Cada vencedora recebe R$ 1.500. Em empate, a organizadora desempata.
+3 etapas, 2 vencedoras por etapa (6 no total), 2 votos por pessoa em cada etapa (em instituições diferentes; o navegador de cada pessoa só deixa votar uma vez em cada instituição). Quem vence uma etapa não entra nas seguintes. Cada vencedora recebe R$ 1.500. Em empate, a organizadora desempata.
 
 ## Datas: sempre com o fuso
 Ao digitar `inicio_em` e `fim_em` na tabela `etapas`, inclua o fuso de Brasília, por exemplo `2026-10-20 09:00:00-03`. Sem o `-03` o horário pode ser lido como UTC, três horas fora. A tela `/acompanhar` mostra as datas em horário de Brasília para você conferir.
@@ -57,7 +57,7 @@ delete from public.votos;              -- tudo (use antes de valer)
 | `TURNSTILE_SITE_KEY` | Production: não precisa (usa a chave do site). Preview: `1x00000000000000000000AA` | Chave pública do captcha |
 | `VOTE_TEST_MODE` | Só Preview, valor `1` | Votos viram "teste" e o ranking só lê votos de teste |
 | `ACOMPANHAR_SENHA` | Production e Preview | Senha da tela `/acompanhar` (use uma senha longa) |
-| `MAX_VOTES_PER_IP` | Opcional | Votos por conexão em cada etapa (padrão 3) |
+| `MAX_VOTES_PER_IP` | Opcional | Votos por conexão em cada etapa (padrão 6, ou seja, 2 votos para cada 3 pessoas na mesma rede). Se essa variável já existir na Vercel com outro valor, o valor da Vercel é o que vale |
 
 Depois de mudar qualquer variável é preciso um novo deploy.
 

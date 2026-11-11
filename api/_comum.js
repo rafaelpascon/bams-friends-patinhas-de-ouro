@@ -14,7 +14,7 @@ function configuracao() {
     chave: SUPABASE_SERVICE_ROLE_KEY,
     turnstile: TURNSTILE_SECRET_KEY,
     sal: VOTE_SALT,
-    maxPorIp: parseInt(process.env.MAX_VOTES_PER_IP || '3', 10) || 3,
+    maxPorIp: parseInt(process.env.MAX_VOTES_PER_IP || '6', 10) || 6,
     siteKey: process.env.TURNSTILE_SITE_KEY || SITEKEY_PADRAO,
     modoTeste: process.env.VOTE_TEST_MODE === '1',
     senhaAcompanhar: process.env.ACOMPANHAR_SENHA || '',
