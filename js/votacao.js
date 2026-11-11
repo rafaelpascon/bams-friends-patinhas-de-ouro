@@ -4,6 +4,7 @@
 
   const POR_PAGINA = 12;
   const ATUALIZACAO_MS = 60000;
+  const formatadorBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
   const $ = function (id) {
     return document.getElementById(id);
   };
@@ -125,6 +126,9 @@
     }
     const texto = criar('div', 'contemplada-texto');
     texto.appendChild(criar('p', 'contemplada-nome', inst.nome));
+    if (inst.repasse && typeof inst.repasse.valor === 'number') {
+      texto.appendChild(criar('p', 'contemplada-valor', 'Recebeu ' + formatadorBRL.format(inst.repasse.valor)));
+    }
     if (inst.instagram) {
       const link = criar('a', 'contemplada-insta', inst.instagram);
       link.href = BF.linkInstagram(inst.instagram);
@@ -140,6 +144,18 @@
   function renderContempladas() {
     el.contempladas.innerHTML = '';
     let colunas = 0;
+
+    const primeiras = protetores.filter(function (p) {
+      return p.tipo === 'ong' && p.status === 'definida' && p.nome;
+    });
+    if (primeiras.length) {
+      const coluna = criar('div', 'contempladas-coluna');
+      coluna.appendChild(criar('h4', 'contempladas-titulo', 'Primeira beneficiada'));
+      primeiras.forEach(function (inst) { coluna.appendChild(cartaoContemplada(inst)); });
+      el.contempladas.appendChild(coluna);
+      colunas += 1;
+    }
+
     [1, 2, 3].forEach(function (n) {
       const instituicoes = ((estado.vencedoras && estado.vencedoras[n]) || [])
         .map(function (id) { return porId[id]; })
@@ -153,7 +169,7 @@
     });
 
     const definidos = protetores.filter(function (p) {
-      return p.status === 'definida' && p.nome;
+      return p.tipo === 'protetor' && p.status === 'definida' && p.nome;
     });
     el.protetoresLista.innerHTML = '';
     definidos.forEach(function (p) {

@@ -1,4 +1,5 @@
 [
+  { "id": "miau-auau", "tipo": "ong", "status": "definida", "nome": "ONG Miau Auau", "instagram": null, "foto": null, "repasse": { "valor": 1500 } },
   { "id": "protetor-1", "tipo": "protetor", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },
   { "id": "protetor-2", "tipo": "protetor", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },
   { "id": "protetor-3", "tipo": "protetor", "status": "em_breve", "nome": null, "instagram": null, "foto": null, "repasse": null },

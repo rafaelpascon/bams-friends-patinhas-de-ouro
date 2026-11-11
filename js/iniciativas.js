@@ -121,7 +121,9 @@
   });
 
   Promise.all([ongs, BF.carregarProtetores()]).then(function (res) {
-    res[0].concat(res[1]).filter(definida).forEach(function (item) {
+    const primeiras = res[1].filter(function (i) { return i.tipo === 'ong'; });
+    const protetores = res[1].filter(function (i) { return i.tipo !== 'ong'; });
+    primeiras.concat(res[0], protetores).filter(definida).forEach(function (item) {
       listaPrestacao.appendChild(cartaoRepasse(item));
     });
   });
