@@ -4,6 +4,7 @@
 
   const POR_PAGINA = 12;
   const ATUALIZACAO_MS = 60000;
+  const VOTOS_POR_PESSOA = 2;
   const formatadorBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
   const $ = function (id) {
     return document.getElementById(id);
@@ -39,18 +40,36 @@
   let ongPendente = null;
   let etapaPendente = null;
 
-  function lerVoto(etapa) {
+  // Votos desta pessoa na etapa. A chave antiga guardava um único id (quando era 1 voto por etapa).
+  function lerVotos(etapa) {
+    const ids = [];
     try {
-      return localStorage.getItem('bf_voto_etapa_' + etapa);
-    } catch (e) {
-      return null;
-    }
+      const antigo = localStorage.getItem('bf_voto_etapa_' + etapa);
+      if (antigo) ids.push(antigo);
+      const lista = JSON.parse(localStorage.getItem('bf_votos_etapa_' + etapa) || '[]');
+      if (Array.isArray(lista)) {
+        lista.forEach(function (id) {
+          if (typeof id === 'string' && ids.indexOf(id) === -1) ids.push(id);
+        });
+      }
+    } catch (e) {}
+    return ids;
   }
 
   function gravarVoto(etapa, id) {
+    const ids = lerVotos(etapa);
+    if (ids.indexOf(id) === -1) ids.push(id);
     try {
-      localStorage.setItem('bf_voto_etapa_' + etapa, id);
+      localStorage.setItem('bf_votos_etapa_' + etapa, JSON.stringify(ids));
     } catch (e) {}
+  }
+
+  function jaVotouEm(etapa, id) {
+    return lerVotos(etapa).indexOf(id) !== -1;
+  }
+
+  function votosUsados(etapa) {
+    return lerVotos(etapa).length;
   }
 
   function mensagem(texto) {
@@ -76,7 +95,17 @@
 
   function modoBotao() {
     if (estado.fase !== 'aberta') return 'bloqueado';
-    return lerVoto(estado.etapaAtual) ? 'votou' : 'ativo';
+    return votosUsados(estado.etapaAtual) >= VOTOS_POR_PESSOA ? 'votou' : 'ativo';
+  }
+
+  function mensagemDeVotos() {
+    const usados = votosUsados(estado.etapaAtual);
+    if (usados >= VOTOS_POR_PESSOA) return 'Você usou seus ' + VOTOS_POR_PESSOA + ' votos nesta etapa. Obrigado por participar!';
+    if (usados > 0) {
+      const falta = VOTOS_POR_PESSOA - usados;
+      return 'Você já usou ' + usados + ' de ' + VOTOS_POR_PESSOA + ' votos. Falta ' + falta + (falta === 1 ? ' voto' : ' votos') + ' nesta etapa, em outra instituição.';
+    }
+    return '';
   }
 
   function listaVisivel() {
@@ -184,10 +213,11 @@
     const acao = card.querySelector('.ong-acao');
     acao.innerHTML = '';
     const modo = modoBotao();
-    if (modo === 'votou') {
-      if (lerVoto(estado.etapaAtual) === inst.id) acao.appendChild(criar('p', 'ong-seu-voto', 'Seu voto'));
+    if (modo !== 'bloqueado' && jaVotouEm(estado.etapaAtual, inst.id)) {
+      acao.appendChild(criar('p', 'ong-seu-voto', 'Seu voto'));
       return;
     }
+    if (modo === 'votou') return;
     const botao = criar('button', 'btn-votar', modo === 'ativo' ? 'Votar nesta instituição' : 'Votação ainda não aberta');
     botao.type = 'button';
     if (modo === 'bloqueado') botao.disabled = true;
@@ -225,7 +255,7 @@
   function criarCard(inst) {
     const card = criar('article', 'ong-card');
     card.dataset.ong = inst.id;
-    if (lerVoto(estado.etapaAtual) === inst.id && estado.fase === 'aberta') card.classList.add('escolhida');
+    if (jaVotouEm(estado.etapaAtual, inst.id) && estado.fase === 'aberta') card.classList.add('escolhida');
 
     const topo = criar('div', 'ong-card-topo');
     if (inst.foto) {
@@ -370,11 +400,7 @@
       }
     }
 
-    if (estado.fase === 'aberta' && lerVoto(estado.etapaAtual)) {
-      mensagem('Você já votou nesta etapa. Obrigado por participar!');
-    } else if (!enviando) {
-      mensagem('');
-    }
+    if (!enviando) mensagem(estado.fase === 'aberta' ? mensagemDeVotos() : '');
   }
 
   function atualizarEstado() {
@@ -421,7 +447,11 @@
           enviando = false;
           if (widgetId !== null && window.turnstile) window.turnstile.reset(widgetId);
           renderLista();
-          mensagem('Voto registrado, obrigado por participar!');
+          mensagem(
+            votosUsados(estado.etapaAtual) >= VOTOS_POR_PESSOA
+              ? 'Voto registrado! Você usou seus ' + VOTOS_POR_PESSOA + ' votos nesta etapa. Obrigado por participar!'
+              : 'Voto registrado! Você ainda pode votar em mais 1 instituição.'
+          );
           return;
         }
         if (res.status === 409) {
@@ -448,7 +478,8 @@
   }
 
   function iniciarVoto(id) {
-    if (enviando || estado.fase !== 'aberta' || lerVoto(estado.etapaAtual)) return;
+    if (enviando || estado.fase !== 'aberta') return;
+    if (votosUsados(estado.etapaAtual) >= VOTOS_POR_PESSOA || jaVotouEm(estado.etapaAtual, id)) return;
     enviando = true;
     ongPendente = id;
     etapaPendente = estado.etapaAtual;
